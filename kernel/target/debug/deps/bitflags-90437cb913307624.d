@@ -1,0 +1,11 @@
+/home/rsoliman/Work/limine-rust-template/kernel/target/debug/deps/bitflags-90437cb913307624.d: /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/lib.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/iter.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/parser.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/traits.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/public.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/internal.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/external.rs
+
+/home/rsoliman/Work/limine-rust-template/kernel/target/debug/deps/libbitflags-90437cb913307624.rmeta: /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/lib.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/iter.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/parser.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/traits.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/public.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/internal.rs /home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/external.rs
+
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/lib.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/iter.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/parser.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/traits.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/public.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/internal.rs:
+/home/rsoliman/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitflags-2.4.2/src/external.rs:

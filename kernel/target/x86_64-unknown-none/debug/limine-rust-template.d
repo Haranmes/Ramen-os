@@ -1,0 +1,1 @@
+/home/rsoliman/Work/limine-rust-template/kernel/target/x86_64-unknown-none/debug/limine-rust-template: /home/rsoliman/Work/limine-rust-template/kernel/build.rs /home/rsoliman/Work/limine-rust-template/kernel/linker-x86_64.ld /home/rsoliman/Work/limine-rust-template/kernel/src/main.rs
