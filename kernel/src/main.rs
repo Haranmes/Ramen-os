@@ -26,27 +26,30 @@ static _START_MARKER: RequestsStartMarker = RequestsStartMarker::new();
 #[unsafe(link_section = ".requests_end_marker")]
 static _END_MARKER: RequestsEndMarker = RequestsEndMarker::new();
 
+mod psf_font;
+
+static FONT: &[u8] = include_bytes!("../font.psf");
+
 #[unsafe(no_mangle)]
 unsafe extern "C" fn kmain() -> ! {
     // All limine requests must also be referenced in a called function, otherwise they may be
     // removed by the linker.
     assert!(BASE_REVISION.is_supported());
 
-    if let Some(framebuffer_response) = FRAMEBUFFER_REQUEST.get_response() {
-        if let Some(framebuffer) = framebuffer_response.framebuffers().next() {
-            for i in 0..100_u64 {
-                // Calculate the pixel offset using the framebuffer information we obtained above.
-                // We skip `i` scanlines (pitch is provided in bytes) and add `i * 4` to skip `i` pixels forward.
-                let pixel_offset = i * framebuffer.pitch() + i * 4;
-
-                // Write 0xFFFFFFFF to the provided pixel offset to fill it white.
-                unsafe {
-                    framebuffer
-                        .addr()
-                        .add(pixel_offset as usize)
-                        .cast::<u32>()
-                        .write(0xFFFFFFFF)
-                };
+    if let Some(response) = FRAMEBUFFER_REQUEST.get_response() {
+        if let Some(framebuffer) = response.framebuffers().next() {
+            if let Some(font) = psf_font::load_psf1_font(FONT) {
+                psf_font::draw_text(
+                    &framebuffer,
+                    &font,
+                    "Hello Limine!\nFrom Rust <3",
+                    10,
+                    10,
+                    0xFFFFFF, // White
+                    0x000000, // Black
+                );
+            } else {
+                hcf(); // bad font
             }
         }
     }
