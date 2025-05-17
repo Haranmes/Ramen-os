@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "limine-rust-template"
+name = "ramen-os"
 version = "0.1.0"
 dependencies = [
  "limine",

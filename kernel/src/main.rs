@@ -2,6 +2,7 @@
 #![no_main]
 
 use core::arch::asm;
+use core::panic;
 
 use limine::BaseRevision;
 use limine::request::{FramebufferRequest, RequestsEndMarker, RequestsStartMarker};
@@ -27,8 +28,9 @@ static _START_MARKER: RequestsStartMarker = RequestsStartMarker::new();
 static _END_MARKER: RequestsEndMarker = RequestsEndMarker::new();
 
 mod psf_font;
+mod makros;
+mod utils;
 
-static FONT: &[u8] = include_bytes!("../font.psf");
 
 #[unsafe(no_mangle)]
 unsafe extern "C" fn kmain() -> ! {
@@ -36,29 +38,14 @@ unsafe extern "C" fn kmain() -> ! {
     // removed by the linker.
     assert!(BASE_REVISION.is_supported());
 
-    if let Some(response) = FRAMEBUFFER_REQUEST.get_response() {
-        if let Some(framebuffer) = response.framebuffers().next() {
-            if let Some(font) = psf_font::load_psf1_font(FONT) {
-                psf_font::draw_text(
-                    &framebuffer,
-                    &font,
-                    "Hello Limine!\nFrom Rust <3",
-                    10,
-                    10,
-                    0xFFFFFF, // White
-                    0x000000, // Black
-                );
-            } else {
-                hcf(); // bad font
-            }
-        }
-    }
-
+    println!("Hello World");
+    panic!("help");
     hcf();
 }
 
 #[panic_handler]
 fn rust_panic(_info: &core::panic::PanicInfo) -> ! {
+    error!("{}", _info);
     hcf();
 }
 
