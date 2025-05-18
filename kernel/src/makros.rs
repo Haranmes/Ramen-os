@@ -25,6 +25,7 @@ macro_rules! println {
                             y,
                             0xFFFFFF,
                             0x000000,
+                            None
                         );
 
                         crate::makros::CURSOR_X = 0;
@@ -38,10 +39,9 @@ macro_rules! println {
     }};
 }
 
-
 #[macro_export]
-macro_rules! error {
-       ($($arg:tt)*) => {{
+macro_rules! write_serial {
+    ($color_code:expr, $($arg:tt)*) => {{
         static FONT: &[u8] = include_bytes!("../font.psf");
         if let Some(response) = FRAMEBUFFER_REQUEST.get_response() {
             if let Some(framebuffer) = response.framebuffers().next() {
@@ -61,8 +61,9 @@ macro_rules! error {
                             writer.as_str(),
                             x,
                             y,
-                            0xEE4B2B,
+                            0xFFFFFF,
                             0x000000,
+                            $color_code
                         );
 
                         crate::makros::CURSOR_X = 0;
@@ -75,3 +76,4 @@ macro_rules! error {
         }
     }};
 }
+

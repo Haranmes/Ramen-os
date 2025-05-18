@@ -1,4 +1,4 @@
-
+use heapless::Vec;
 
 // A struct to represent a PSF1 font.
 // - `charsize` is the height (in bytes) of each glyph.
@@ -94,26 +94,43 @@ pub fn draw_text(
     mut y: usize,             // Starting y position
     fg: u32,                  // Foreground color
     bg: u32,                  // Background color
+    highlight_color: Option<u32>    
 ) {
     
 
-    let char_height = font.charsize; // Get height of one character (in pixels)
+    let char_height = font.charsize;
+    let mut in_brackets = false;
 
-    // Loop through each byte of the string
     for ch in text.bytes() {
         match ch {
             b'\n' => {
-                // Newline: move to the next row
                 x = 0;
                 y += char_height;
             }
+            b'[' => {
+                in_brackets = true;
+                let color = highlight_color.unwrap_or(fg);
+                draw_char(framebuffer, font, ch, x, y, color, bg);
+                x += 8;
+            }
+            b']' => {
+                let color = highlight_color.unwrap_or(fg);
+                draw_char(framebuffer, font, ch, x, y, color, bg);
+                x += 8;
+                in_brackets = false;
+            }
             _ => {
-                // Draw the character and move cursor to the right
-                draw_char(framebuffer, font, ch, x, y, fg, bg);
-                x += 8; // PSF1 is 8 pixels wide per character
+                let color = if in_brackets {
+                    highlight_color.unwrap_or(fg)
+                } else {
+                    fg
+                };
+                draw_char(framebuffer, font, ch, x, y, color, bg);
+                x += 8;
             }
         }
     }
+
 }
 
 
