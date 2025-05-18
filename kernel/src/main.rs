@@ -16,6 +16,7 @@ mod makros;
 mod utils;
 mod entry_type;
 mod log;
+mod serial;
 
 /// Sets the base revision to the latest revision supported by the crate.
 /// See specification for further info.
@@ -56,7 +57,12 @@ unsafe extern "C" fn kmain() -> ! {
     if let Some(memmap_response) = MEMMAP_REQUEST.get_response() {
         for entry in memmap_response.entries() {
             let entry_type_str : &'static str =  entry_type::entry_type_to_str(entry.entry_type);
-
+            serial_println!("Base: {:#x}, Length: {:#x}, Type: {}",
+                entry.base,
+                entry.length,
+                entry_type_str
+            );
+            
             info!(
                 "Base: {:#x}, Length: {:#x}, Type: {}",
                 entry.base,
@@ -68,10 +74,6 @@ unsafe extern "C" fn kmain() -> ! {
 
     hcf();
 }
-
-
-#[unsafe(no_mangle)]
-pub extern "C" fn rust_eh_personality() {}
 
 #[panic_handler]
 fn rust_panic(_info: &core::panic::PanicInfo) -> ! {
